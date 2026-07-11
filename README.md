@@ -1,66 +1,138 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# SilkRoad 🐫
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Marketplace de servicios freelance para estudiantes universitarios. Conecta talento estudiantil (diseño, desarrollo, tutorías, redacción, edición de video, etc.) con quienes necesitan esos servicios dentro del entorno universitario.
 
-## About Laravel
+**Proyecto académico** — Universidad Tecnológica de Puebla, Tecnologías de la Información, Desarrollo Web Integral.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Equipo
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- Galo Eduardo Martínez Ortuño
+- Styveen Emiliano Rizo Hernández
+- Karina Yáñez González
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+**Docente:** Pedro Martínez Galaviz
+**Cuatrimestre:** Mayo – Agosto 2026
 
-## Learning Laravel
+## Stack tecnológico
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+| Capa | Tecnología |
+|---|---|
+| Backend | Laravel 11 |
+| Frontend | Vue 3 (Composition API) |
+| Puente Backend-Frontend | Inertia.js |
+| Base de datos | MySQL 8 |
+| Caché / Colas | Redis |
+| WebSockets | Laravel Reverb |
+| Bundler | Vite |
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## Requisitos previos
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Antes de clonar, asegúrate de tener instalado:
 
-## Laravel Sponsors
+- **PHP** >= 8.2
+- **Composer** >= 2.x
+- **Node.js** >= 18 y **npm**
+- **MySQL** >= 8.0
+- **Git**
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## Instalación
 
-### Premium Partners
+1. Clona el repositorio:
+   ```bash
+   git clone https://github.com/Styveensoon/silk-route.git
+   cd silk-route
+   ```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+2. Instala las dependencias de PHP:
+   ```bash
+   composer install
+   ```
 
-## Contributing
+3. Instala las dependencias de Node:
+   ```bash
+   npm install
+   ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+4. Copia el archivo de entorno y genera la clave de aplicación:
+   ```bash
+   copy .env.example .env
+   php artisan key:generate
+   ```
+   *(en Linux/Mac usa `cp` en vez de `copy`)*
 
-## Code of Conduct
+5. Configura la base de datos en `.env`:
+   ```
+   DB_CONNECTION=mysql
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_DATABASE=silk_route
+   DB_USERNAME=root
+   DB_PASSWORD=
+   ```
+   Crea la base de datos vacía en MySQL:
+   ```sql
+   CREATE DATABASE silk_route;
+   ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+6. Corre las migraciones:
+   ```bash
+   php artisan migrate
+   ```
 
-## Security Vulnerabilities
+## Cómo levantar el proyecto (desarrollo)
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Necesitas **dos terminales abiertas al mismo tiempo**, ambas en la raíz del proyecto:
 
-## License
+**Terminal 1 — Vite (compila y sirve los assets del frontend):**
+```bash
+npm run dev
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+**Terminal 2 — Servidor de Laravel:**
+```bash
+php artisan serve
+```
+
+Con ambas corriendo, abre [http://127.0.0.1:8000](http://127.0.0.1:8000) en el navegador.
+
+> Si ves el error `Vite manifest not found`, significa que `npm run dev` no está corriendo — Laravel busca los assets compilados y Vite aún no los sirvió.
+
+## Estructura del proyecto
+
+```
+silk-route/
+├── app/
+│   ├── Http/Controllers/     # Controladores (reciben petición, devuelven respuesta)
+│   ├── Http/Middleware/      # Middlewares (incluye HandleInertiaRequests)
+│   ├── Models/                # Modelos Eloquent
+│   ├── Repositories/          # Patrón Repository (acceso a datos desacoplado)
+│   └── Services/               # Patrón Service Layer (lógica de negocio)
+├── database/
+│   └── migrations/             # Definición de tablas
+├── resources/
+│   ├── js/
+│   │   ├── Pages/               # Componentes Vue que renderiza Inertia
+│   │   └── app.js               # Punto de entrada del frontend
+│   └── views/
+│       └── app.blade.php        # Vista raíz que monta Inertia
+├── routes/
+│   └── web.php                  # Rutas de la aplicación
+└── vite.config.js
+```
+
+## Flujo de ramas (Git)
+
+| Rama | Propósito |
+|---|---|
+| `main` | Rama estable, base del proyecto |
+| `backend` | Desarrollo de lógica de servidor (Laravel) |
+| `frontend` | Desarrollo de interfaz (Vue) |
+| `database` | Migraciones, seeders, cambios de esquema |
+| `web-services` | APIs externas, SMTP, integraciones |
+| `test` | Pruebas unitarias y de integración |
+
+Cada módulo se desarrolla en su rama correspondiente y se integra a `main` mediante merge tras revisión.
+
+## Arquitectura
+
+Monolito modular con separación cliente-servidor. Ver documentación completa del caso de estudio (Producto 01) para detalle de patrones de diseño (Repository, Service Layer, Observer, Strategy) y justificación de arquitectura.
