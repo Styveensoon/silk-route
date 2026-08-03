@@ -26,7 +26,7 @@ class ServiceFactory extends Factory
         $point = $this->faker->randomElement($this->meetingPoints);
 
         return [
-            'user_id' => User::factory(),
+            'user_id' => User::factory()->state(['role' => 'freelancer']),
             'category_id' => Category::query()->inRandomOrder()->value('id'),
             'title' => ucfirst($this->faker->words(4, true)),
             'description' => $this->faker->paragraph(3),

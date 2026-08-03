@@ -4,11 +4,14 @@ use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ServiceController;
+use App\Services\ServiceService;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-Route::get('/', function () {
-    return Inertia::render('Home');
+Route::get('/', function (ServiceService $serviceService) {
+    return Inertia::render('Home', [
+        'services' => $serviceService->listActiveServices()->take(6)->values(),
+    ]);
 });
 
 Route::get('/services', [ServiceController::class, 'index'])->name('services.index');
