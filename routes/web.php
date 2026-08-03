@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ServiceController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -14,5 +15,9 @@ Route::post('/services', [ServiceController::class, 'store'])->name('services.st
 Route::get('/services/{service}/edit', [ServiceController::class, 'edit'])->name('services.edit');
 Route::put('/services/{service}', [ServiceController::class, 'update'])->name('services.update');
 Route::delete('/services/{service}', [ServiceController::class, 'destroy'])->name('services.destroy');
+
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::resource('categories', CategoryController::class)->except(['show']);
+});
 
 require __DIR__.'/auth.php';
