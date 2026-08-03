@@ -1,5 +1,11 @@
 <template>
-  <div class="clay-card p-5 flex flex-col h-full">
+  <div
+    class="clay-card p-5 flex flex-col h-full cursor-pointer"
+    role="button"
+    tabindex="0"
+    @click="$emit('open', service)"
+    @keydown.enter="$emit('open', service)"
+  >
     <div class="flex items-start justify-between gap-2">
       <h3 class="font-bold text-clay-text leading-snug">{{ service.title }}</h3>
       <span class="text-clay-primary font-extrabold whitespace-nowrap">${{ price }}</span>
@@ -24,6 +30,8 @@ import { computed } from 'vue';
 const props = defineProps({
   service: { type: Object, required: true },
 });
+
+defineEmits(['open']);
 
 const price = computed(() =>
   Number(props.service.price).toLocaleString('es-MX', { minimumFractionDigits: 0 })

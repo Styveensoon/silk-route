@@ -49,22 +49,31 @@
       </div>
 
       <div v-else class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
-        <ServiceCard v-for="service in services" :key="service.id" :service="service" />
+        <ServiceCard v-for="service in services" :key="service.id" :service="service" @open="selectedServiceId = $event.id" />
       </div>
     </section>
+
+    <ServiceDetailModal
+      :show="!!selectedServiceId"
+      :service-id="selectedServiceId"
+      @close="selectedServiceId = null"
+    />
   </AppLayout>
 </template>
 
 <script setup>
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 import { Link, usePage } from '@inertiajs/vue3';
 import AppLayout from '../Layouts/AppLayout.vue';
 import ServiceCard from '../Components/ServiceCard.vue';
+import ServiceDetailModal from '../Components/ServiceDetailModal.vue';
 
 defineProps({
   services: { type: Array, default: () => [] },
   categories: { type: Array, default: () => [] },
 });
+
+const selectedServiceId = ref(null);
 
 const page = usePage();
 const user = computed(() => page.props.auth?.user ?? null);

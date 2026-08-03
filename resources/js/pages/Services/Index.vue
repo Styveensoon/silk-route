@@ -22,23 +22,31 @@
 
     <div v-else class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
       <div v-for="service in services" :key="service.id">
-        <ServiceCard :service="service" />
+        <ServiceCard :service="service" @open="selectedServiceId = $event.id" />
         <div v-if="canManage(service)" class="mt-2 flex gap-3 text-sm px-1">
-          <Link :href="`/services/${service.id}/edit`" class="text-clay-primary font-semibold hover:underline">
+          <Link :href="`/services/${service.id}/edit`" class="text-clay-primary font-semibold hover:underline" @click.stop>
             Editar
           </Link>
-          <button @click="remove(service)" class="text-rose-500 font-semibold hover:underline">
+          <button @click.stop="remove(service)" class="text-rose-500 font-semibold hover:underline">
             Eliminar
           </button>
         </div>
       </div>
     </div>
+
+    <ServiceDetailModal
+      :show="!!selectedServiceId"
+      :service-id="selectedServiceId"
+      @close="selectedServiceId = null"
+    />
   </AppLayout>
 </template>
 
 <script setup>
+import { ref } from 'vue';
 import AppLayout from '../../Layouts/AppLayout.vue';
 import ServiceCard from '../../Components/ServiceCard.vue';
+import ServiceDetailModal from '../../Components/ServiceDetailModal.vue';
 import { Link, router, usePage } from '@inertiajs/vue3';
 
 defineProps({
@@ -48,6 +56,7 @@ defineProps({
 });
 
 const page = usePage();
+const selectedServiceId = ref(null);
 
 function canManage(service) {
   const user = page.props.auth?.user;
