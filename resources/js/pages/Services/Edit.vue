@@ -43,11 +43,17 @@
         Guardar cambios
       </button>
     </form>
+
+    <div class="max-w-lg mt-8">
+      <h2 class="text-sm font-medium text-gray-700 mb-2">Ubicacion actual guardada</h2>
+      <MapPoint :lat="service.meeting_lat" :lng="service.meeting_lng" :label="service.title" />
+    </div>
   </AppLayout>
 </template>
 
 <script setup>
 import AppLayout from '../../Layouts/AppLayout.vue';
+import MapPoint from '../../Components/MapPoint.vue';
 import { useForm } from '@inertiajs/vue3';
 
 const props = defineProps({
