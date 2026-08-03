@@ -16,12 +16,17 @@ class Service extends Model
         'description',
         'price',
         'status',
+        'meeting_address',
+        'meeting_lat',
+        'meeting_lng',
     ];
 
     protected function casts(): array
     {
         return [
             'price' => 'decimal:2',
+            'meeting_lat' => 'decimal:7',
+            'meeting_lng' => 'decimal:7',
         ];
     }
 

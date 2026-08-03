@@ -18,6 +18,7 @@ class StoreServiceRequest extends FormRequest
             'description' => ['required', 'string', 'max:2000'],
             'price' => ['required', 'numeric', 'min:0'],
             'category_id' => ['required', 'exists:categories,id'],
+            'meeting_address' => ['required', 'string', 'max:255'],
         ];
     }
 }
