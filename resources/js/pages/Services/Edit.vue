@@ -1,51 +1,50 @@
 <template>
   <AppLayout>
-    <h1 class="text-2xl font-bold text-gray-900 mb-6">Editar servicio</h1>
+    <h1 class="text-2xl font-extrabold text-clay-text mb-6">Editar servicio</h1>
 
-    <form @submit.prevent="submit" class="space-y-4 max-w-lg">
+    <form @submit.prevent="submit" class="clay-surface p-6 space-y-5 max-w-lg">
       <div>
-        <label class="block text-sm font-medium text-gray-700">Titulo</label>
-        <input v-model="form.title" type="text" class="mt-1 w-full border-gray-300 rounded-md" />
-        <p v-if="form.errors.title" class="text-sm text-red-600 mt-1">{{ form.errors.title }}</p>
+        <label class="clay-label">Titulo</label>
+        <input v-model="form.title" type="text" class="clay-input" />
+        <p v-if="form.errors.title" class="text-sm text-rose-500 mt-1">{{ form.errors.title }}</p>
       </div>
 
       <div>
-        <label class="block text-sm font-medium text-gray-700">Descripcion</label>
-        <textarea v-model="form.description" class="mt-1 w-full border-gray-300 rounded-md" rows="4"></textarea>
-        <p v-if="form.errors.description" class="text-sm text-red-600 mt-1">{{ form.errors.description }}</p>
+        <label class="clay-label">Descripcion</label>
+        <textarea v-model="form.description" class="clay-input" rows="4"></textarea>
+        <p v-if="form.errors.description" class="text-sm text-rose-500 mt-1">{{ form.errors.description }}</p>
       </div>
 
       <div>
-        <label class="block text-sm font-medium text-gray-700">Categoria</label>
-        <select v-model="form.category_id" class="mt-1 w-full border-gray-300 rounded-md">
+        <label class="clay-label">Categoria</label>
+        <select v-model="form.category_id" class="clay-input">
           <option v-for="category in categories" :key="category.id" :value="category.id">
             {{ category.name }}
           </option>
         </select>
-        <p v-if="form.errors.category_id" class="text-sm text-red-600 mt-1">{{ form.errors.category_id }}</p>
+        <p v-if="form.errors.category_id" class="text-sm text-rose-500 mt-1">{{ form.errors.category_id }}</p>
       </div>
 
       <div>
-        <label class="block text-sm font-medium text-gray-700">Precio (MXN)</label>
-        <input v-model="form.price" type="number" class="mt-1 w-full border-gray-300 rounded-md" />
-        <p v-if="form.errors.price" class="text-sm text-red-600 mt-1">{{ form.errors.price }}</p>
+        <label class="clay-label">Precio (MXN)</label>
+        <input v-model="form.price" type="number" class="clay-input" />
+        <p v-if="form.errors.price" class="text-sm text-rose-500 mt-1">{{ form.errors.price }}</p>
       </div>
 
       <div>
-        <label class="block text-sm font-medium text-gray-700">Punto de encuentro</label>
-        <input v-model="form.meeting_address" type="text" class="mt-1 w-full border-gray-300 rounded-md"
+        <label class="clay-label">Punto de encuentro</label>
+        <input v-model="form.meeting_address" type="text" class="clay-input"
           placeholder="Ej. Zocalo de Puebla, Puebla" />
-        <p v-if="form.errors.meeting_address" class="text-sm text-red-600 mt-1">{{ form.errors.meeting_address }}</p>
+        <p v-if="form.errors.meeting_address" class="text-sm text-rose-500 mt-1">{{ form.errors.meeting_address }}</p>
       </div>
 
-      <button type="submit" :disabled="form.processing"
-        class="bg-indigo-600 text-white px-4 py-2 rounded-md disabled:opacity-50">
+      <button type="submit" :disabled="form.processing" class="clay-btn-primary w-full">
         Guardar cambios
       </button>
     </form>
 
-    <div class="max-w-lg mt-8">
-      <h2 class="text-sm font-medium text-gray-700 mb-2">Ubicacion actual guardada</h2>
+    <div class="clay-surface p-6 max-w-lg mt-8">
+      <h2 class="text-sm font-semibold text-clay-text mb-3">Ubicacion actual guardada</h2>
       <MapPoint :lat="service.meeting_lat" :lng="service.meeting_lng" :label="service.title" />
     </div>
   </AppLayout>

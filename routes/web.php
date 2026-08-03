@@ -11,6 +11,7 @@ use Inertia\Inertia;
 Route::get('/', function (ServiceService $serviceService) {
     return Inertia::render('Home', [
         'services' => $serviceService->listActiveServices()->take(6)->values(),
+        'categories' => $serviceService->categories(),
     ]);
 });
 

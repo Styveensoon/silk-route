@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\Collection;
 
 class EloquentServiceRepository implements ServiceRepositoryInterface
 {
-    public function all(): Collection
+    public function all(?int $categoryId = null): Collection
     {
         return Service::with(['user', 'category'])
             ->where('status', 'active')
+            ->when($categoryId, fn ($query) => $query->where('category_id', $categoryId))
             ->latest()
             ->get();
     }

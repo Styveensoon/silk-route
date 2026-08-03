@@ -1,36 +1,43 @@
 <template>
-  <div class="min-h-screen bg-gray-50">
-    <nav class="bg-white border-b border-gray-200">
-      <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between flex-wrap gap-2">
-        <Link href="/" class="font-bold text-lg text-gray-900">SilkRoad 🐫</Link>
-        <div class="flex items-center gap-4 text-sm">
-          <Link href="/services" class="text-gray-600 hover:text-gray-900">Servicios</Link>
+  <div class="min-h-screen bg-clay-bg">
+    <div class="max-w-6xl mx-auto px-4 pt-5">
+      <nav class="clay-surface px-5 py-3 flex items-center justify-between flex-wrap gap-3">
+        <Link href="/" class="font-extrabold text-lg text-clay-text flex items-center gap-2">
+          <span class="text-2xl">🐫</span> SilkRoad
+        </Link>
+
+        <div class="flex items-center gap-2 text-sm flex-wrap">
+          <Link href="/services" class="clay-chip">Servicios</Link>
 
           <template v-if="user">
-            <Link v-if="user.role === 'freelancer'" href="/services/create" class="text-gray-600 hover:text-gray-900">
-              Publicar
+            <Link v-if="user.role === 'freelancer'" href="/services/create" class="clay-chip">
+              ✨ Publicar
             </Link>
-            <Link v-if="user.role === 'admin'" href="/categories" class="text-gray-600 hover:text-gray-900">
-              Categorias
+            <Link v-if="user.role === 'admin'" href="/categories" class="clay-chip">
+              🏷️ Categorias
             </Link>
-            <Link v-if="user.role === 'admin'" href="/admin/users" class="text-gray-600 hover:text-gray-900">
-              Usuarios
+            <Link v-if="user.role === 'admin'" href="/admin/users" class="clay-chip">
+              👤 Usuarios
             </Link>
-            <span class="text-gray-300">|</span>
-            <span class="text-gray-500">{{ user.name }} ({{ user.role }})</span>
-            <Link href="/logout" method="post" as="button" class="text-gray-600 hover:text-gray-900">
+
+            <span class="hidden sm:inline-flex clay-badge bg-clay-bg text-clay-muted shadow-clay-inset ml-1">
+              {{ user.name }} · {{ user.role }}
+            </span>
+
+            <Link href="/logout" method="post" as="button" class="clay-btn-secondary !px-4 !py-1.5 text-sm">
               Salir
             </Link>
           </template>
 
           <template v-else>
-            <Link href="/login" class="text-gray-600 hover:text-gray-900">Entrar</Link>
-            <Link href="/register" class="text-gray-600 hover:text-gray-900">Registrarme</Link>
+            <Link href="/login" class="clay-chip">Entrar</Link>
+            <Link href="/register" class="clay-btn-primary !px-4 !py-1.5 text-sm">Registrarme</Link>
           </template>
         </div>
-      </div>
-    </nav>
-    <main class="max-w-5xl mx-auto px-4 py-8">
+      </nav>
+    </div>
+
+    <main class="max-w-6xl mx-auto px-4 py-8">
       <slot />
     </main>
   </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreServiceRequest;
 use App\Models\Service;
 use App\Services\ServiceService;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -15,10 +16,14 @@ class ServiceController extends Controller
         protected ServiceService $serviceService
     ) {}
 
-    public function index(): Response
+    public function index(Request $request): Response
     {
+        $categoryId = $request->integer('category') ?: null;
+
         return Inertia::render('Services/Index', [
-            'services' => $this->serviceService->listActiveServices(),
+            'services' => $this->serviceService->listActiveServices($categoryId),
+            'categories' => $this->serviceService->categories(),
+            'activeCategory' => $categoryId,
         ]);
     }
 

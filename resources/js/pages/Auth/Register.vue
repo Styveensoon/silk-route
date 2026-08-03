@@ -2,45 +2,46 @@
   <GuestLayout>
     <Head title="Registro" />
 
+    <h1 class="text-xl font-extrabold text-clay-text text-center mb-5">Crear cuenta</h1>
+
     <form @submit.prevent="submit" class="space-y-4">
       <div>
-        <label class="block text-sm font-medium text-gray-700">Nombre</label>
-        <input v-model="form.name" type="text" class="mt-1 w-full border-gray-300 rounded-md" required autofocus />
-        <p v-if="form.errors.name" class="text-sm text-red-600 mt-1">{{ form.errors.name }}</p>
+        <label class="clay-label">Nombre</label>
+        <input v-model="form.name" type="text" class="clay-input" required autofocus />
+        <p v-if="form.errors.name" class="text-sm text-rose-500 mt-1">{{ form.errors.name }}</p>
       </div>
 
       <div>
-        <label class="block text-sm font-medium text-gray-700">Correo</label>
-        <input v-model="form.email" type="email" class="mt-1 w-full border-gray-300 rounded-md" required />
-        <p v-if="form.errors.email" class="text-sm text-red-600 mt-1">{{ form.errors.email }}</p>
+        <label class="clay-label">Correo</label>
+        <input v-model="form.email" type="email" class="clay-input" required />
+        <p v-if="form.errors.email" class="text-sm text-rose-500 mt-1">{{ form.errors.email }}</p>
       </div>
 
       <div>
-        <label class="block text-sm font-medium text-gray-700">Quiero registrarme como</label>
-        <select v-model="form.role" class="mt-1 w-full border-gray-300 rounded-md">
+        <label class="clay-label">Quiero registrarme como</label>
+        <select v-model="form.role" class="clay-input">
           <option value="cliente">Cliente (busco servicios)</option>
           <option value="freelancer">Freelancer (ofrezco servicios)</option>
         </select>
-        <p v-if="form.errors.role" class="text-sm text-red-600 mt-1">{{ form.errors.role }}</p>
+        <p v-if="form.errors.role" class="text-sm text-rose-500 mt-1">{{ form.errors.role }}</p>
       </div>
 
       <div>
-        <label class="block text-sm font-medium text-gray-700">Contrasena</label>
-        <input v-model="form.password" type="password" class="mt-1 w-full border-gray-300 rounded-md" required />
-        <p v-if="form.errors.password" class="text-sm text-red-600 mt-1">{{ form.errors.password }}</p>
+        <label class="clay-label">Contrasena</label>
+        <input v-model="form.password" type="password" class="clay-input" required />
+        <p v-if="form.errors.password" class="text-sm text-rose-500 mt-1">{{ form.errors.password }}</p>
       </div>
 
       <div>
-        <label class="block text-sm font-medium text-gray-700">Confirmar contrasena</label>
-        <input v-model="form.password_confirmation" type="password" class="mt-1 w-full border-gray-300 rounded-md" required />
+        <label class="clay-label">Confirmar contrasena</label>
+        <input v-model="form.password_confirmation" type="password" class="clay-input" required />
       </div>
 
-      <div class="flex items-center justify-between">
-        <Link href="/login" class="text-sm text-gray-600 hover:text-gray-900">
+      <div class="flex items-center justify-between pt-2">
+        <Link href="/login" class="text-sm text-clay-muted hover:text-clay-text">
           Ya tienes cuenta?
         </Link>
-        <button type="submit" :disabled="form.processing"
-          class="bg-indigo-600 text-white px-4 py-2 rounded-md disabled:opacity-50">
+        <button type="submit" :disabled="form.processing" class="clay-btn-primary">
           Registrarme
         </button>
       </div>

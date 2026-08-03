@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Collection;
 
 interface ServiceRepositoryInterface
 {
-    public function all(): Collection;
+    public function all(?int $categoryId = null): Collection;
 
     public function create(array $data): Service;
 

@@ -16,9 +16,9 @@ class ServiceService
         protected ServiceRepositoryInterface $repository
     ) {}
 
-    public function listActiveServices(): Collection
+    public function listActiveServices(?int $categoryId = null): Collection
     {
-        return $this->repository->all();
+        return $this->repository->all($categoryId);
     }
 
     public function categories(): Collection

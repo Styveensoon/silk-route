@@ -1,6 +1,6 @@
 <template>
-  <div v-if="hasCoordinates" ref="mapContainer" class="w-full h-64 rounded-md border border-gray-200"></div>
-  <p v-else class="text-sm text-gray-400 italic">
+  <div v-if="hasCoordinates" ref="mapContainer" class="w-full h-64 rounded-2xl shadow-clay-inset overflow-hidden"></div>
+  <p v-else class="text-sm text-clay-muted italic">
     Sin ubicacion en el mapa todavia (la direccion no se pudo ubicar).
   </p>
 </template>

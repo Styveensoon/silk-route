@@ -1,3 +1,60 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-clay-bg text-clay-text;
+  }
+}
+
+@layer components {
+  .clay-surface {
+    @apply bg-clay-surface rounded-clay shadow-clay;
+  }
+
+  .clay-card {
+    @apply bg-clay-surface rounded-clay shadow-clay-sm transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-clay;
+  }
+
+  .clay-btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 font-semibold
+      transition-all duration-150 shadow-clay-sm active:shadow-clay-pressed active:translate-y-px
+      disabled:opacity-50 disabled:pointer-events-none;
+  }
+
+  .clay-btn-primary {
+    @apply clay-btn bg-clay-primary text-white hover:bg-clay-primary-dark;
+  }
+
+  .clay-btn-secondary {
+    @apply clay-btn bg-clay-surface text-clay-text hover:-translate-y-0.5;
+  }
+
+  .clay-btn-danger {
+    @apply clay-btn bg-clay-surface text-rose-500 hover:-translate-y-0.5;
+  }
+
+  .clay-input {
+    @apply w-full rounded-2xl border-0 bg-clay-bg px-4 py-2.5 text-clay-text shadow-clay-inset
+      placeholder:text-clay-muted focus:ring-2 focus:ring-clay-primary focus:outline-none;
+  }
+
+  .clay-label {
+    @apply block text-sm font-semibold text-clay-text/80 mb-1.5;
+  }
+
+  .clay-chip {
+    @apply inline-flex items-center gap-1.5 rounded-full px-4 py-1.5 text-sm font-medium
+      bg-clay-surface text-clay-text shadow-clay-sm transition-all duration-150
+      hover:-translate-y-0.5 hover:shadow-clay;
+  }
+
+  .clay-chip-active {
+    @apply clay-chip bg-clay-primary text-white shadow-clay-inset hover:translate-y-0;
+  }
+
+  .clay-badge {
+    @apply inline-block text-xs font-semibold px-3 py-1 rounded-full;
+  }
+}
